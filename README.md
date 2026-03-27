@@ -25,7 +25,7 @@ https://suyeol-ji-20260326.vercel.app
 The core persona defined in this MVP is a woman in her mid-40s at the team lead or C-level, whose key pain point is:
 "I need to decide quickly, but I can't commit without confidence."
 
-To address this, the AI Agent handles all the browsing on behalf of the user — so the user only needs to confirm.
+To address this, the AI Agent handles all the browsing on behalf of the user, so the user only needs to confirm.
 
 ---
 
@@ -61,7 +61,7 @@ The following principles guided the design:
 - **Providing reasoning**: Recommendation rationale is clearly structured and presented
 - **Context integration**: User input is combined with reviews from the same persona
 
-The core belief driving this design is that **reducing choices actually improves the user experience** — by cutting out browsing and focusing the UX around building confidence.
+The core belief driving this design is that **reducing choices actually improves the user experience** by cutting out browsing and focusing the UX around building confidence.
 
 ---
 
