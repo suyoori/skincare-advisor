@@ -17,4 +17,3 @@ npm-debug.log*
 # 환경변수 (퍼블릭 저장소 보안)
 .env
 .env.*
-!.env.example
