@@ -8,7 +8,6 @@
 2. .Create a .env file and add the following values:
 ```bash
 OPENAI_API_KEY=Enter your issued API key
-PORT=3000
 ```
 
 3. Run the server
