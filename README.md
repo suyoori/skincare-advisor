@@ -2,12 +2,19 @@
 
 > Busy women in their 40s complete a purchase with confidence in under 10 minutes w/o browsing required
 
+## ⚠️ Demo Notice
+
+This service requires a personal OpenAI API key to run.
+
+To ensure the core functionality can still be explored without an API key, a fallback recommendation logic has been implemented.
+
 ## How to Run
 
 1. Clone the project
 2. .Create a .env file and add the following values:
 ```bash
 OPENAI_API_KEY=Enter your issued API key
+PORT=3000
 ```
 
 3. Run the server
