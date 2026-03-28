@@ -2,6 +2,21 @@
 
 > Busy women in their 40s complete a purchase with confidence in under 10 minutes w/o browsing required
 
+## How to Run
+
+1. Clone the project
+2. .Create a .env file and add the following values:
+```bash
+OPENAI_API_KEY=Enter your issued API key
+PORT=3000
+```
+
+3. Run the server
+```bash
+npm install
+npm run dev
+```
+
 ## Service Link
 
 https://suyeol-ji-20260326.vercel.app
