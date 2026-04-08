@@ -1,117 +1,104 @@
-# AI Skincare Advisor
+# AI 스킨케어 어드바이저
 
-> Busy women in their 40s complete a purchase with confidence in under 10 minutes w/o browsing required
+> 바쁜 40대 여성이 10분 안에, 탐색 없이 확신하고 구매를 완료한다
 
-## Service Link
+## 서비스 링크
 
 https://suyeol-ji-20260326.vercel.app
 
-## Tech Stack
+## 기술 스택
 
 - Frontend: React (JavaScript)
 - Backend: Node.js + Express
 - AI: OpenAI
-- Crawling: Olive Young reviews
-- Hosting: Vercel (frontend) + Render (backend)
+- 크롤링: 올리브영 리뷰
+- 호스팅: Vercel (프론트) + Render (백엔드)
 
-## Core Features
+## 핵심 기능
 
-1. **AI Skin Condition Diagnosis** — Analyzes user input (age / skin type / recent changes / concerns) in the context of hormonal changes common in women in their 40s
-2. **Same-Persona Review Filtering** — Extracts only reviews from similar age groups from crawled Olive Young data
-3. **Single Recommendation** — Presents the single most suitable product with clear reasoning, rather than multiple options
+1. **AI 피부 상태 진단** - 나이/피부타입/최근변화/고민 입력 시 40대 호르몬 변화 맥락에서 분석
+2. **동일 페르소나 후기 필터링** - 올리브영 크롤링 데이터에서 유사 연령대 리뷰만 추출
+3. **단일 추천** - 여러 선택지 대신 가장 적합한 제품 1개를 근거와 함께 제시
 
-## Design Intent
+## 설계 의도
 
-The core persona defined in this MVP is a woman in her mid-40s at the team lead or C-level, whose key pain point is:
-"I need to decide quickly, but I can't commit without confidence."
+MVP애서 정의한 페르소나(45세 팀장급/C레벨 여성)의 핵심 페인포인트는  
+"빠르게 결정해야 하지만 확신이 없으면 결정을 내리지 못하는 상황"입니다.
 
-To address this, the AI Agent handles all the browsing on behalf of the user, so the user only needs to confirm.
-
----
-
-## Problem-Solving During Implementation
-
-In the initial implementation, AI responses were passed directly to the user. This led to two issues:
-
-- Response formats were inconsistent, making stable UI rendering difficult
-- Longer explanations actually slowed down user decision-making
-
-The following improvements were applied:
-
-- Output format enforced as JSON at the prompt level
-- Response structure constrained to "single product recommendation + 3 supporting reasons"
-- Responses parsed and cleaned server-side before being sent to the frontend
-
-This ensured consistency in AI output and UI stability, while enabling users to understand and decide quickly.
-
-During crawling, data extraction became unstable due to site structure changes. A fallback data structure was designed alongside the main pipeline to prevent service interruptions.
-
-During real-world testing, users encountered errors after long loading times when clicking "Start AI Analysis," caused by delays from external APIs and crawling. Request timeouts and a fallback response strategy were introduced to ensure users are redirected to the results screen quickly even in failure cases. This was a deliberate design choice: prioritizing an uninterrupted user experience over a perfect single response.
+이를 해결하기 위해 AI Agent가 탐색을 대신 수행하고,  
+고객은 확신만 하면 되는 구조로 설계했습니다.
 
 ---
 
-## AI Design Principles
+## 구현 과정에서의 문제 해결 경험
 
-In this service, AI is designed not merely to provide information, but to **assist users in making decisions**.
+초기 구현에서는 AI 응답을 그대로 사용자에게 전달하는 방식으로 접근했지만,  
+다음과 같은 문제가 발생했습니다:
 
-The following principles guided the design:
+- 응답 형식이 일정하지 않아 UI에서 안정적으로 렌더링하기 어려움
+- 설명이 길어질수록 사용자 의사결정 속도가 오히려 느려짐
 
-- **Role assignment**: Configured as an expert who understands skin concerns of women in their mid-to-late 30s and 40s
-- **Minimizing choices**: Only a single product is recommended, never multiple options
-- **Providing reasoning**: Recommendation rationale is clearly structured and presented
-- **Context integration**: User input is combined with reviews from the same persona
+이를 해결하기 위해 다음과 같은 개선을 적용했습니다:
 
-The core belief driving this design is that **reducing choices actually improves the user experience** by cutting out browsing and focusing the UX around building confidence.
+- 프롬프트 단계에서 출력 형식을 JSON으로 강제
+- "단일 제품 추천 + 근거 3가지"로 응답 구조를 제한
+- 서버에서 응답을 파싱/정제한 후 프론트엔드로 전달
 
----
+이 과정을 통해 AI 응답의 일관성과 UI 안정성을 확보할 수 있었고,  
+사용자가 빠르게 이해하고 결정할 수 있는 형태로 개선했습니다.
 
-## System Architecture Intent
+또한 크롤링 과정에서는 사이트 구조에 따라 데이터 추출이 불안정해지는 문제가 있었고,  
+이를 완화하기 위해 fallback 데이터 구조를 함께 설계하여 서비스가 중단되지 않도록 했습니다.
 
-The service is structured with a clear separation between frontend, backend, and AI calls.
-
-- **Frontend**: Handles user input and result display (UI/UX)
-- **Backend**: Manages crawling, data processing, AI calls, and response refinement
-- **AI**: Focused solely on generating recommendations
-
-This structure provides:
-
-- Security by managing API keys server-side
-- Consistent output by controlling AI responses on the server
-- Flexibility to swap models or extend features in the future
+추가로 실제 테스트 중에는 사용자가 입력 후 "AI 분석 시작하기"를 눌렀을 때 외부 API/크롤링 지연으로 로딩 화면에 오래 머문 뒤 오류가 발생하는 문제가 확인되었습니다. 이를 해결하기 위해 요청 타임아웃과 fallback 응답 전략을 도입해, 실패 상황에서도 결과 화면으로 빠르게 전환되도록 개선했습니다. 이 결정은 "완벽한 단일 응답"보다 "중단되지 않는 사용자 경험"을 우선한 설계 선택이었습니다.
 
 ---
 
-## Limitations & Improvement Directions
+## AI 활용 설계 포인트
 
-Given the focus on MVP delivery, the following limitations exist:
+본 서비스에서 AI는 단순한 정보 제공이 아니라,  
+사용자의 "의사결정을 대신 도와주는 역할"로 설계했습니다.
 
-- Crawling-based data is vulnerable to site structure changes
-- Product data is limited, resulting in lower recommendation variety
-- No mechanism to improve recommendations based on user feedback
+이를 위해 다음과 같은 기준을 적용했습니다:
 
-Planned improvements include:
+- 역할 부여: 35~40대 여성 피부 고민을 이해하는 전문가로 설정
+- 선택지 최소화: 여러 추천 대신 단일 제품만 제시
+- 근거 제공: 추천 이유를 명확하게 구조화하여 제시
+- 컨텍스트 결합: 사용자 입력 정보와 동일 페르소나 리뷰를 함께 활용
 
-- Building a batch pipeline for periodic review data collection
-- Incorporating user feedback into the recommendation loop (effectiveness, satisfaction ratings)
-
-This is currently an MVP, but it has been designed with a clear path toward scaling into a production service.
+특히 "선택지를 줄이는 것이 오히려 사용자 경험을 개선한다"는 판단 하에,  
+탐색 과정을 줄이고 확신 중심의 UX를 설계했습니다.
 
 ---
 
-## UI Screens
+## 시스템 설계 의도
 
-<div align="center">
+서비스 구조는 프론트엔드, 백엔드, AI 호출을 명확히 분리하는 방향으로 설계했습니다.
 
-<img src="images/main.png" alt="Main screen" width="300" />
-<p><em>[ Main screen ]</em></p>
+- 프론트엔드: 사용자 입력 및 결과 표시 (UI/UX 담당)
+- 백엔드: 크롤링, 데이터 가공, AI 호출 및 응답 정제
+- AI: 추천 생성 역할에 집중
 
-<img src="images/loading.png" alt="Loading screen" width="300" />
-<p><em>[ Analysis in progress screen ]</em></p>
+이 구조를 통해:
 
-<img src="images/results.png" alt="Results screen" width="300" />
-<p><em>[ Recommendation results screen ]</em></p>
+- API Key를 서버에서 관리하여 보안 확보
+- AI 응답을 서버에서 통제하여 일관된 출력 유지
+- 향후 다른 모델로 교체하거나 기능 확장이 가능하도록 유연성 확보
 
-<img src="images/reviews.png" alt="Reviews screen" width="300" />
-<p><em>[ Crawling from Olive Young reviews ]</em></p>
+---
 
-</div>
+## 한계 및 개선 방향
+
+MVP 구현에 집중하면서,  
+다음과 같은 한계가 존재합니다.
+
+- 크롤링 기반 데이터는 사이트 구조 변경에 영향을 받음
+- 제품 데이터가 제한적이며 추천 다양성이 부족함
+- 사용자 피드백을 반영한 추천 개선 구조가 없음
+
+이를 개선하기 위해:
+
+- 리뷰 데이터를 주기적으로 수집하는 배치 파이프라인 구축
+- 사용자 피드백 기반 추천 개선 (효과 여부, 만족도 반영)
+
+현재는 MVP 단계이지만, 실제 서비스로 확장할 수 있는 방향성을 고려하여 설계했습니다.
