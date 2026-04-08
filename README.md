@@ -2,10 +2,6 @@
 
 > Busy women in their 40s complete a purchase with confidence in under 10 minutes w/o browsing required
 
-## Service Link
-
-https://suyeol-ji-20260326.vercel.app
-
 ## Tech Stack
 
 - Frontend: React (JavaScript)
