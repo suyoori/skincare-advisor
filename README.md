@@ -96,6 +96,9 @@ This is currently an MVP, but it has been designed with a clear path toward scal
 
 ## UI Screens
 
+※ API keys have been removed from the codebase for security purposes.
+To run this project, please configure the required environment variables.
+
 <div align="center">
 
 <img src="images/main.png" alt="Main screen" width="470" />
