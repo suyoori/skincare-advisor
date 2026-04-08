@@ -102,16 +102,16 @@ This is currently an MVP, but it has been designed with a clear path toward scal
 
 <div align="center">
 
-<img src="images/main.png" alt="Main screen" width="300" />
+<img src="images/main.png" alt="Main screen" width="470" />
 <p><em>[ Main screen ]</em></p>
 
-<img src="images/loading.png" alt="Loading screen" width="300" />
+<img src="images/loading.png" alt="Loading screen" width="470" />
 <p><em>[ Analysis in progress screen ]</em></p>
 
-<img src="images/results.png" alt="Results screen" width="300" />
+<img src="images/results.png" alt="Results screen" width="470" />
 <p><em>[ Recommendation results screen ]</em></p>
 
-<img src="images/reviews.png" alt="Reviews screen" width="300" />
+<img src="images/reviews.png" alt="Reviews screen" width="470" />
 <p><em>[ Crawling from Olive Young reviews ]</em></p>
 
 </div>
