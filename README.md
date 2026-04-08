@@ -96,8 +96,8 @@ This is currently an MVP, but it has been designed with a clear path toward scal
 
 ## UI Screens
 
-※ <u>API keys have been removed from the codebase for security purposes.
-To run this project, please configure the required environment variables.</u>
+> ※ API keys have been removed from the codebase for security purposes.
+To run this project, please configure the required environment variables.
 
 <div align="center">
 
